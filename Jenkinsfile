@@ -32,9 +32,13 @@ pipeline {
         }
     }
 
-    post {
-        always {
-            archiveArtifacts artifacts: 'allure-results/**,test-results/**', allowEmptyArchive: true
-        }
+   post {
+    always {
+        allure includeProperties: false,
+               jdk: '',
+               results: [[path: 'allure-results']]
+
+        archiveArtifacts artifacts: 'allure-results/**,test-results/**', allowEmptyArchive: true
     }
+}
 }
